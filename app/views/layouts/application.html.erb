@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YetAnotherBookCollection</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjmwmbZdzKJGXcyiRiWgkWhIRNwsvL66JLy+wkS8vsJEfH3MzAAAAAAAAAAAAAAAAEnzAdROFzqUPZ6BsCkVrKLuOMu+7jjL/u44y/7uOMs0lImI1OzvZ/zs72f87O9n/MDCwiQAAAAAAAAAAAAAAABaS4eMVkeD/FZHg/xWR4OO/lDzv9PT0//T09P+9kDTNJiNjNWJi3v+amqn/fX3X/zIysokAAAAAAAAAAAk6WRxDpuT/lqSs/2Wt2/8Wkd+5xJpG7/T09P/09PT/v5I2zSclZDV5eeX/kpKS/5WV2f8zM7SJAAAAAAAAAAAQXY5VYLXr/4+Pj/+EuNr/FHu8gcGUOO/Hnkr/xZpD/8GUOM0oJmU1QkLf/1tb4/9EROD/NTW1iQAAAAAAAAAAGIDCjhyY5/89p+r/H5nn/xBbi0jHnUfv0LJ2/9Cydf/FmUDNKidmNV9f4/98fOP/cXHk/zc3t4kAAAAAAAAAACuf6ceEwef/WbHp/yOc6f0KOlgQzqxl78jIyP/Nzc3/yqJPzSsoZzWVleP/wcHB/7y81/85ObmJAAAAAAktRAdZs+v4vLy8/8zMzP83pevVAAAAANCuZ++zs7P/vLy8/8yjUc0sKWg1lpbj/6Wlpf+zs87/Ojq6iQAAAAARUXk6hMLp/62trf+3xM3/H5PcnAAAAADSsGnv6enp/+rq6v/NpVLNLSppNZ2d6//o6Oj/0NDr/zw8vIkAAAAAG3awcrja8P/u7u7/qNHr/xlxqmMAAAAA1LJr7/T09P/09PT/z6ZUzS4rajWgoO7/9PT0/9bW8f8+Pr6JAAAAACWa5Kvj6u//9PT0/4DF8f8ST3UrAAAAANazbe+Ojo7/oKCg/9CoVc0vLGs1mprn/3R0dP+lpcD/QEC/iQAAAABLsvPkh4eH/4mJif9UtfLvCitBAQAAAADUr2Tv0sm3/9fPvP/QplHNMC1sNY6O7v+xsdD/ra3k/0JCwYkRQ2MeQrD1/5vR9P+11Of/LaXxuAAAAAAAAAAA0qVJ79KlSf/SpUn/0qVJzTEubTVTU/D/U1Pw/1NT8P9DQ8OJGF6KSCyp+P8sqfj/LKn4/ySKy38AAAAAAAAAAMSaRI/MoEe1zKBHtb2VQnchIFASUVHorVFR6bVRUem0ODihRggeLAMbZpZJJYzNgiyo9rMYW4YtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAJj7AAAIcAAACHAAAAhwAAAIYQAACGEAAAhhAAAIYQAACGMAAAhDAAAIQwAACEMAAAhHAAAY5wAA//8AAA==" rel="icon" type="image/x-icon" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "Yet Another Book Collection", root_path, class: "navbar-brand" %>
+        </div>
+        <ul class="nav navbar-nav">
+          <% if current_user %>
+            <li><a href="#">Wellcome <%= current_user.name %></a></li>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
+        </ul>
+        <div class="col-sm-3 col-md-3">
+          <form class="navbar-form" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search" name="search">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <% Category.all.each do |c| %>
+              <li class="<%=  'active' if params[:category] == c.name %>">
+                <%= link_to c.name, books_path(category: c.name), class: 'link' %>
+              </li>
+              <% end %>
+            </ul>
+          </li>
+          <% if current_user %>
+          <li><%= link_to "Add book", new_book_path %></li>
+          <li><%= link_to "Sign Out", logout_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <br><br><br>
+      <%= yield %>
+    </div>
+  </body>
+</html>

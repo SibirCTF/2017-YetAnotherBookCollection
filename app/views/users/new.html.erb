@@ -1,0 +1,22 @@
+<!-- app/views/users/new.html.erb -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sign Up</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for :user, url: '/users' do |f| %>
+      <div class="">
+        <p>Name:</p> <%= f.text_field :name, placeholder: :name %>
+      </div>
+      <div class="">
+        <p>Email:</p> <%= f.text_field :email, placeholder: :email %>
+      </div>
+      <div class="">
+        <p>Password:</p> <%= f.password_field :password, placeholder: :password %>
+      </div>
+      <%= f.submit "Submit", class: "btn btn-default" %>
+      <% end %>
+  </div>
+  <div class="panel-footer">
+  </div>
+</div>

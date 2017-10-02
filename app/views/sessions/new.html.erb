@@ -1,0 +1,19 @@
+<!-- app/views/users/new.html.erb -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sign Up</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_tag '/login' do %>
+      <div class="">
+        <p>Email:</p> <%= text_field_tag :email %>
+      </div>
+      <div class="">
+        <p>Password:</p> <%= password_field_tag :password %>
+      </div>
+      <div class="">
+        <%= submit_tag "Submit", class: "btn btn-default"  %>
+      </div>
+      <% end %>
+  </div>
+</div>

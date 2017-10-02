@@ -1,0 +1,9 @@
+<%= simple_form_for @book do |f| %>
+  <%= f.input :title, label: "Book title" %>
+  <%= f.association :category %>
+  <%= f.input :book_cover, as: :file  %>
+  <%= f.input :desc, label: "Description" %>
+  <%= f.input :author, label: "Author" %>
+  <%= f.input :is_privat, label: "I don't want show this book" %>
+  <%= f.button :submit %>
+<% end %>

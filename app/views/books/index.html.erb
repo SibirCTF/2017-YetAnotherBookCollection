@@ -1,0 +1,35 @@
+<% if params[:category].present? %>
+<h1 class="current-category"><%= params[:category] %></h1>
+<% end %>
+<% if @books.count == 0 %>
+<h1>There are no books</h1>
+<% else %>
+<div class="row">
+  <h1>Books
+    <small>private</small>
+  </h1>
+  <% @books.each do |book| %>
+    <% if (current_user && book.is_privat? && current_user.id == book.user_id) %>
+    <div class="col-md-3">
+      <a href="/books/<%= book.id %>">
+        <%= image_tag book.book_cover.url(:preview), class: 'img-thumbnail' %>
+      </a>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="row">
+  <h1>Books
+    <small>public</small>
+  </h1>
+  <% @books.each do |book| %>
+  <% unless book.is_privat? %>
+  <div class="col-md-3">
+    <a href="/books/<%= book.id %>">
+      <%= image_tag book.book_cover.url(:preview), class: 'img-thumbnail' %>
+    </a>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<% end %>

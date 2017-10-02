@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |var| %>
+        <tr class="table">
+          <td><%= var['title'] %></td>
+          <td><%= var['desc'] %></td>
+          <td><%= var['author'] %></td>
+          <td><%= time_ago_in_words(var['updated_at']) %></td>
+          <td>
+            <%= link_to "Edit", edit_book_path(var), class: "btn btn-info" %>
+          </td>
+          <td>
+            <%= link_to "Delete", book_path(var), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+
+        </tr>
+    <% end %>
+</tbody>
+</table>
