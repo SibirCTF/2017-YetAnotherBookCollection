@@ -1,2 +1,2 @@
-# 2017-silevanov
+# 2017-YetAnotherBookCollection
 Service by Igor Polyakov
