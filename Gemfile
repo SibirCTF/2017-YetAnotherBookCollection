@@ -17,7 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails', '~> 4.2'
-gem 'ffaker'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'paperclip'
@@ -28,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'ffaker'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
